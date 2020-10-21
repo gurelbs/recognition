@@ -69,7 +69,7 @@ try {
     <>
   <div className="container-fluid px-0 height-100 bg-dark text-light text-center pt-3">
     <div className="bg-dark text-light px-5 pt-2">
-        <h1 className="display-1"><a href="https://milim.cf" className="nav-link">MiliM</a></h1>
+        <h1 className="display-1"><a href="http://gurelbs.github.io/recognition" className="nav-link">MiliM</a></h1>
         <h4 className="font-weight-light mb-2">תמלול בזמן אמת</h4>
           {isList ? <span>&#127908;</span> : <span>&#127908;	&#128308;</span>}
           <div className="row p-5 mx-2">
