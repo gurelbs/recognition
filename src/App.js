@@ -1,32 +1,29 @@
+/* eslint-disable jsx-a11y/accessible-emoji */
 import React, { useState, useEffect } from 'react';
-
+import Footer from './Footer';
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
 const recognition = new SpeechRecognition();
-
-
 recognition.continuous = true;
 recognition.interimResults = true;
-recognition.lang = 'he-IL'
-function App() {
+recognition.lang = 'he-IL';
+
+export default function App() {
 
   const [isList, setIsList] = useState(false);
   const [note, setNote] = useState(null);
   const [saveNote, setSaveNote] = useState([]);
 
-
 try {
-  useEffect(() => {
-    handleListen()
-  }, [isList])
-
   const handleListen = () => {
     try {
       if(isList){
         recognition.start();
         recognition.onend = () => {
           console.log(`ממשיך...`);
-          recognition.start();
+
+          setTimeout(() => {
+            recognition.start();
+          },50)
         }
       } else {
         recognition.stop();
@@ -38,18 +35,27 @@ try {
         console.log(`מיקרופון פועל`);
       }
       recognition.onresult = e => {
-        const transcript = Array.from(e.results)
-        .map(result => result[0])
-        .map(result => result.transcript)
-        .join('')
-        console.log(transcript);
-        setNote(transcript)
-        recognition.onerror = e => console.log(e.error);
+        let current = e.resultIndex;
+        let transcript = e.results[current][0].transcript;
+        let mobileRepeatBug = (current === 1 && transcript === e.results[0][0].transcript);
+
+        if (!mobileRepeatBug){
+          setNote(transcript)
+          recognition.onerror = e => console.log(e.error);
+          if (transcript === 'מחק' || transcript === ' מחק'){
+            setSaveNote([...saveNote]);
+          }
+        }
+
       }        
     } catch (error) {
       console.log(error);      
     }
   }
+  useEffect(() => {
+    handleListen()
+  }, [handleListen, isList])
+
 } catch (error) {
   console.log(error);
 }
@@ -61,28 +67,28 @@ try {
 
   return (
     <>
-  <div className="container-fluid height-100 bg-dark text-light text-center pt-3">
+  <div className="container-fluid px-0 height-100 bg-dark text-light text-center pt-3">
     <div className="bg-dark text-light px-5 pt-2">
-        <h1 className="h1">תמלול בזמן אמת</h1>
+        <h1 className="display-1"><a href="https://milim.cf" className="nav-link">MiliM</a></h1>
+        <h4 className="font-weight-light mb-2">תמלול בזמן אמת</h4>
           {isList ? <span>&#127908;</span> : <span>&#127908;	&#128308;</span>}
-          <div className="row p-2">
-          <button onClick={() => setIsList(prevState => !prevState)} className="col m-1 btn btn-outline-danger">הקלטה/עצירה</button>
-          <button onClick={handleSaveNote } disabled={!note} className="col m-1 btn btn-outline-success">שמירה</button>
-            <p className="col-12">{note}</p>
+          <div className="row p-5 mx-2">
+          <button onClick={() => setIsList(prevState => !prevState)} className="col-xl-5 mb-1 btn btn-outline-danger py-5">הקלטה / עצירה</button>
+          <span className="col-2 "></span>
+          <button onClick={handleSaveNote } disabled={!note} className="col-xl-5 mb-1 btn btn-outline-success py-5">שמירה</button>
+            <p className="col-12 h4 mt-2">{note}</p>
           </div>
       </div>
-      <div className="bg-dark text-light px-5 pt-2 mt-3 mx-auto">
-        <h1 className="h1">פלט</h1>
+      <div className="bg-dark text-light px-5 mx-auto ouput-size">
+          <h1 className="h3">הטקסט שלך: {note}</h1>
           <div className="form-row justify-content-center pb-3">
             {saveNote.map(n => 
-                    <span className="p card text-dark" key={n}>{n}&#160;</span>
+                    <span className="p mt-5 card text-dark" key={n}>{n}&#160;</span>
               )}         
           </div>
       </div>
-      
+      <Footer />      
   </div>
     </>
   );
 }
-
-export default App;
