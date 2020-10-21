@@ -1,4 +1,4 @@
-### `homepage: <a href="http://gurelbs.github.io/recognition">HERE</a>`
+### `homepage:` <a href="http://gurelbs.github.io/recognition">HERE</a>
 
 ## Available Scripts
 
