@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.js": "/recognition/static/js/main.56ded2e9.chunk.js",
-    "main.js.map": "/recognition/static/js/main.56ded2e9.chunk.js.map",
+    "main.js": "/recognition/static/js/main.0a84482b.chunk.js",
+    "main.js.map": "/recognition/static/js/main.0a84482b.chunk.js.map",
     "runtime-main.js": "/recognition/static/js/runtime-main.63f9aa37.js",
     "runtime-main.js.map": "/recognition/static/js/runtime-main.63f9aa37.js.map",
     "static/css/2.6414bb7b.chunk.css": "/recognition/static/css/2.6414bb7b.chunk.css",
     "static/js/2.0fe7a5c4.chunk.js": "/recognition/static/js/2.0fe7a5c4.chunk.js",
     "static/js/2.0fe7a5c4.chunk.js.map": "/recognition/static/js/2.0fe7a5c4.chunk.js.map",
     "index.html": "/recognition/index.html",
-    "precache-manifest.7461689bf040d57bf78ddeec47cb6c66.js": "/recognition/precache-manifest.7461689bf040d57bf78ddeec47cb6c66.js",
+    "precache-manifest.854f91a211cc5ad504a6f8a4aec95282.js": "/recognition/precache-manifest.854f91a211cc5ad504a6f8a4aec95282.js",
     "service-worker.js": "/recognition/service-worker.js",
     "static/css/2.6414bb7b.chunk.css.map": "/recognition/static/css/2.6414bb7b.chunk.css.map",
     "static/js/2.0fe7a5c4.chunk.js.LICENSE.txt": "/recognition/static/js/2.0fe7a5c4.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.63f9aa37.js",
     "static/css/2.6414bb7b.chunk.css",
     "static/js/2.0fe7a5c4.chunk.js",
-    "static/js/main.56ded2e9.chunk.js"
+    "static/js/main.0a84482b.chunk.js"
   ]
 }
